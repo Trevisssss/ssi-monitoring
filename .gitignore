@@ -1,0 +1,4 @@
+.venv/
+playwright/
+.env
+.python-version
