@@ -2,3 +2,4 @@
 playwright/
 .env
 .python-version
+dados_ssi.csv

@@ -1,11 +1,11 @@
 import os
 from playwright.sync_api import sync_playwright
-"""
-#----------------------------------- | -----------------------------------------------
-ESTE SCRIPT SÓ É EXECUTADO 1 VEZ, APÓS OS ARQUIVOS DE SESSÃO SEREM CRIADOS (PASTA 'playwright') PODEMOS IR DIRETO PRA EXECUÇÃO DO SEGUNDO SCRIPT
 
-"""
-# Nome do arquivo onde a sessão será salva
+# Este arquivo agora atua como um módulo de autenticação.
+# Ele define a função para criar uma sessão, mas não a executa diretamente.
+# A execução será controlada pelo script principal (o orquestrador).
+
+# Constante com o caminho do arquivo de estado para ser usada por outros scripts
 ARQUIVO_ESTADO = "playwright/.auth/estado_linkedin.json"
 
 def criar_sessao_linkedin():
@@ -16,19 +16,18 @@ def criar_sessao_linkedin():
     """
     with sync_playwright() as p:
         # Usamos um diretório persistente para o navegador
-        # Isso ajuda a parecer mais com um navegador real
         contexto_usuario = p.chromium.launch_persistent_context(
             user_data_dir="playwright/user_data",
             headless=False,
             slow_mo=50
         )
         
-        # Pega a primeira página que já vem aberta, evitando criar uma segunda aba
+        # Pega a primeira página que já vem aberta
         pagina = contexto_usuario.pages[0]
 
-        # Navega para uma página qualquer do LinkedIn para o login
+        # Navega para a página do SSI para o login
         pagina.goto("https://www.linkedin.com/sales/ssi")
-        pagina.bring_to_front() # Garante que a janela do navegador fique em primeiro plano
+        pagina.bring_to_front()
 
         print("\n" + "="*50)
         print(">>> AÇÃO MANUAL NECESSÁRIA <<<")
@@ -41,17 +40,10 @@ def criar_sessao_linkedin():
         # Após o usuário pressionar Enter, o estado da sessão é salvo.
         contexto_usuario.storage_state(path=ARQUIVO_ESTADO)
         print(f"Sessão salva com sucesso em: {ARQUIVO_ESTADO}")
-        print("Você só precisa executar este script uma vez!")
         
         # Fecha o navegador
         contexto_usuario.close()
 
-
-if __name__ == "__main__":
-    # Cria os diretórios se eles não existirem
-    if not os.path.exists("playwright/.auth"):
-        os.makedirs("playwright/.auth")
-    if not os.path.exists("playwright/user_data"):
-        os.makedirs("playwright/user_data")
-        
-    criar_sessao_linkedin()
+# O bloco 'if __name__ == "__main__":' foi removido.
+# Este script não fará nada se for executado diretamente.
+# Ele deve ser importado e sua função deve ser chamada por outro script.
