@@ -71,17 +71,16 @@ def etl_ssi():
         elemento_pontuacao = pagina.locator(f"xpath={xpath_pontuacao_relacionamentos}")
         dados_ssi['pontuacao_relacionamentos'] = elemento_pontuacao.inner_text()
 
-        dados_ssi['data_coleta'] = datetime.now().strftime('%Y-%m-%d')
-        dados_ssi['hora_coleta'] = datetime.now().strftime('%H:%M:%S')
+        dados_ssi['hora_coleta'] = datetime.now()
         browser.close()
 
         # Agora com os dados armazenados em um dicionário, tá na hora de colocar isso em um arquivo para salvar
 
-        caminhocsv = 'dados_ssi.csv'
+        caminhocsv = 'dados_ssi_raw.csv'
         fileexists = os.path.exists(caminhocsv)
 
         with open(caminhocsv, 'a', newline='') as csvfile:
-            fieldnames = ['pontuacao_geral', 'pontuacao_marca', 'pontuacao_pessoas', 'pontuacao_insights', 'pontuacao_relacionamentos', 'data_coleta', 'hora_coleta']
+            fieldnames = ['pontuacao_geral', 'pontuacao_marca', 'pontuacao_pessoas', 'pontuacao_insights', 'pontuacao_relacionamentos','hora_coleta']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             if not fileexists:
