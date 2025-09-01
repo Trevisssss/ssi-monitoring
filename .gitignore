@@ -2,6 +2,6 @@
 playwright/
 .env
 .python-version
-dados_ssi_raw.csv
 __pycache__
 dashboardTesting.ipynb
+dados_ssi_raw.csv
