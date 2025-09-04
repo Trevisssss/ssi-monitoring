@@ -6,3 +6,6 @@ __pycache__
 dashboardTesting.ipynb
 dados_ssi_raw.csv
 DashboardLinkedin.png
+db_connection_test.py
+secrets/
+extraction_linkedin.py
