@@ -1,6 +1,6 @@
 import os
 from sessao_linkedin import criar_sessao_linkedin
-from extraction_linkedin import etl_ssi
+from extraction_linkedinv2 import etl_ssi
 
 # --- Configuração ---
 # Nome da pasta onde a sessão do Playwright será salva.
