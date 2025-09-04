@@ -1,6 +1,6 @@
 import os
 from sessao_linkedin import criar_sessao_linkedin
-from extraction_linkedinv2 import etl_ssi
+from extraction_linkedinv2 import etl_ssiv2
 
 # --- Configuração ---
 # Nome da pasta onde a sessão do Playwright será salva.
@@ -31,7 +31,7 @@ def orquestrar_etl():
     # 2. Com a sessão garantida, executa a coleta de dados.
     print("Iniciando a coleta de dados do SSI...")
     try:
-        etl_ssi()
+        etl_ssiv2()
         print("\n--- Processo concluído com sucesso! ---")
     except Exception as e:
         print(f"\n--- Ocorreu um erro durante a coleta de dados: {e} ---")

@@ -3,6 +3,7 @@ import os
 import csv
 from datetime import datetime
 from playwright.sync_api import sync_playwright
+
 """
 --------------------------------------|--------------------------------------------
 Este script de fato irá coletar os dados do SSI, enquanto que o outro script apenas

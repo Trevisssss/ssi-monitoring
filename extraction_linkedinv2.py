@@ -19,7 +19,7 @@ ARQUIVO_ESTADO = "playwright/.auth/estado_linkedin.json"
 URL_SSI = "https://www.linkedin.com/sales/ssi"
 
 
-def etl_ssi():
+def etl_ssiv2():
     """
     Carrega a sessão salva, navega para a página do SSI, extrai as pontuações
     e as armazena em um dicionário.
@@ -115,4 +115,4 @@ def etl_ssi():
 
         except Exception as e:
             print(f"Failed to connect: {e}")
-etl_ssi()
+etl_ssiv2()
