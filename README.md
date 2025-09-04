@@ -49,14 +49,14 @@ Cheguei a cogitar Power BI e Looker Studio pela facilidade de criar as visualiza
 
 O projeto está funcional, mas há três melhorias principais planejadas para torná-lo uma solução de nível profissional:
 
+**Migração para Banco de Dados na Nuvem: (Concluído)**
+
+Anteriormente, os dados eram salvos em um arquivo CSV local. Com o objetivo de deixar este projeto o mais próximo de um case real possível, o próximo passo foi substituir o CSV por um banco de dados na nuvem, a ideia inicial era usar o bigquery, porém por limitações do plano free tive que ir para outra solução, e a encontrada foi o `Supabase`, que utiliza um banco Postegres por trás.
+
 **Melhorar o Processo de Autenticação:**
 
 A abordagem de sessão persistente usando a biblioteca `playwright` é eficaz, mas a sessão pode expirar ou ser invalidada, exigindo a recriação manual do arquivo de autenticação. Um próximo passo importante é desenvolver uma rotina de login totalmente automatizada, capaz de detectar a necessidade de uma nova autenticação e realizá-la sem intervenção.
 
-
-**Migração para Banco de Dados na Nuvem:**
-
-Atualmente, os dados são salvos em um arquivo CSV local. Com o objetivo de deixar este projeto o mais próximo de um case real possível, o próximo passo é substituir o CSV por um banco de dados na nuvem, como Google BigQuery, Supabase (PostgreSQL) ou Neon. Isso trará mais escalabilidade, segurança e facilitará a conexão com outras ferramentas de BI.
 
 **Automação Aprimorada:**
 
