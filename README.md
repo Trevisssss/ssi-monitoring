@@ -51,17 +51,17 @@ O projeto está funcional, mas há três melhorias principais planejadas para to
 
 **Melhorar o Processo de Autenticação:**
 
-A abordagem de sessão persistente usando a biblioteca `playwright` é eficaz, mas a sessão pode expirar ou ser invalidada, exigindo a recriação manual do arquivo de autenticação. Um próximo passo importante é desenvolver uma rotina de login totalmente automatizada, capaz de detectar a necessidade de uma nova autenticação e realizá-la sem intervenção humana.
+A abordagem de sessão persistente usando a biblioteca `playwright` é eficaz, mas a sessão pode expirar ou ser invalidada, exigindo a recriação manual do arquivo de autenticação. Um próximo passo importante é desenvolver uma rotina de login totalmente automatizada, capaz de detectar a necessidade de uma nova autenticação e realizá-la sem intervenção.
 
 
 **Migração para Banco de Dados na Nuvem:**
 
-Atualmente, os dados são salvos em um arquivo CSV local. Com o objetivo de deixar este projeto o mais próximo de um case real possíveo, o próximo passo é substituir o CSV por um banco de dados na nuvem, como Google BigQuery, Supabase (PostgreSQL) ou Neon. Isso trará mais escalabilidade, segurança e facilitará a conexão com outras ferramentas de BI.
+Atualmente, os dados são salvos em um arquivo CSV local. Com o objetivo de deixar este projeto o mais próximo de um case real possível, o próximo passo é substituir o CSV por um banco de dados na nuvem, como Google BigQuery, Supabase (PostgreSQL) ou Neon. Isso trará mais escalabilidade, segurança e facilitará a conexão com outras ferramentas de BI.
 
 **Automação Aprimorada:**
 
 A execução do script ainda é manual. O objetivo final é automatizar a execução diária do script orquestrador.py sem depender de um computador local. A principal tecnologia a ser explorada para isso é o `GitHub Actions`, criando um workflow agendado (cron) que rodará o processo de ETL diretamente do repositório.
 
-Existem outras formas de implementar essa solução, mas exigem um maior investimento de tempo e conhecimento, e o GitHub Actions parece ser a mais simples pra este projeto.
+Existem outras formas de implementar essa solução, mas exigem um maior investimento de tempo e conhecimento, e o GitHub Actions parece ser a mais simples para este projeto.
 
 
