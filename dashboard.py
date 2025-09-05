@@ -3,6 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.dates as mdates
+import os
+from dotenv import load_dotenv
+import psycopg2
 
 # Ao ler o CSV, o Pandas não sabe que a coluna de data/hora deve ser tratada
 # como um tipo Datetime, então ele a lê como texto (object).
@@ -10,10 +13,56 @@ import matplotlib.dates as mdates
 
 # Supondo que o nome da sua coluna de data/hora no CSV seja 'hora_coleta'
 def carregar_dados():
+    """
+    ### A função conecta no banco de dados Supabase (Nuvem) e traz os dados em forma de dataframe, para criação do dashboard em seguida.
+    ---------------------------------------------- | ----------------------------------------------
+
+    >ABAIXO SE ENCONTRA O CÓDIGO ANTERIOR QUE SE CONECTAVA AO ARQUIVO.
+    >COM A MIGRAÇÃO PARA O SUPABASE, ELE NÃO SERÁ UTILIZADO MAIS, PORÉM FICARÁ POR ENQUANTO PARA REFERÊNCIA.
+
+    ---------------------------------------------- | ----------------------------------------------
+
     data = pd.read_csv('dados_ssi_raw.csv', parse_dates=['hora_coleta'])
-    # Criar a coluna data, pois é apenas a data inicialmente que nos interessa:
+
+    Criar a coluna data, pois é apenas a data inicialmente que nos interessa:
+
     data['Data'] = data['hora_coleta'].dt.date
+
     return data
+
+    """ 
+    load_dotenv()
+    USER = os.getenv("USER")
+    PASSWORD = os.getenv("PASSWORD")
+    HOST = os.getenv("HOST")
+    PORT = os.getenv("PORT")
+    DBNAME = os.getenv("DBNAME")
+
+    # Define a query SQL para selecionar todos os dados
+    query = "SELECT * FROM dados_ssi;"
+
+    try:
+        # Conecta ao banco de dados usando as credenciais
+        with psycopg2.connect(
+            dbname=DBNAME,
+            user=USER,
+            password=PASSWORD,
+            host=HOST,
+            port=PORT
+        ) as connection:
+            # Usa o pandas para executar a query e carregar o resultado diretamente em um DataFrame
+            data = pd.read_sql_query(query, connection)
+        
+        # Converte a coluna 'hora_coleta' para o tipo datetime, caso não venha no formato correto
+        data['hora_coleta'] = pd.to_datetime(data['hora_coleta'])
+        # Cria a coluna 'Data' apenas com a parte da data, para os agrupamentos
+        data['Data'] = data['hora_coleta'].dt.date
+        return data
+
+    except Exception as e:
+        st.error(f"Erro ao conectar ou buscar dados do banco: {e}")
+        st.stop() #Como não haverá dados pra carregar, o script deve ser interrompido aqui.
+
 
 data = carregar_dados()
 

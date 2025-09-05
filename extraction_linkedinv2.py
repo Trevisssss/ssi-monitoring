@@ -114,5 +114,4 @@ def etl_ssiv2():
                     print("Dados inseridos com sucesso na tabela 'dados_ssi'.")
 
         except Exception as e:
-            print(f"Failed to connect: {e}")
-etl_ssiv2()
+            print(f"Failed to connect: {e}")    
