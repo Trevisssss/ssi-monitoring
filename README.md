@@ -33,10 +33,10 @@ O projeto é dividido em módulos de forma que seja mais fácil identificar erro
 
 Durante o desenvolvimento, enfrentamos alguns desafios técnicos que são comuns em projetos de automação web e que serviram como grandes aprendizados:
 
-⚠️ **Arquitetura da Solução:** Um dos desafios era qual a arquitetura a ser escolhida, pois até então só havia a ideia de que resolveria um 'problema'.
+⚠️ **Arquitetura:** Um dos desafios era qual a arquitetura a ser escolhida, pois até então só havia a ideia de que resolveria um 'problema'.
 Cheguei a cogitar Power BI e Looker Studio pela facilidade de criar as visualizações e também compartilhamento, mas como o projeto não exige que haja um compartilhamento mais robusto e seguro, preferi simplificar em um ambiente unificado, além de praticar conceitos mais novos.
 
-💡**Solução:** Optei por uma stack 100% Python, pois a linguagem normalmente é a referência quando se trata de web scraping em projetos de dados. Com bibliotecas especializadas tanto para a extração (como Playwright) quanto para a visualização (como Streamlit e Seaborn), permitiu manter todo o ciclo de vida do projeto em um ambiente único. 
+💡**Solução:** Optei por uma stack híbrida, onde o ETL é feito em Python, automatizando a extração no site, e depois armazenando em um banco Postgres na nuvem (supabase). Anteriormente o dashboard foi feito com Streamlit, mas dada a minha experiência maior com Power BI e outras funcionalidades extras, migrei pra ele.
 
 
 ⚠️**Login:** O LinkedIn não possui uma API pública para o SSI e utiliza mecanismos avançados para detectar e bloquear automação. A tentativa inicial de fazer login a cada execução falhou devido a CAPTCHAs e páginas em branco.
